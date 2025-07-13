@@ -23,6 +23,7 @@ function init() {
     const leftBtnEl = document.querySelector('#left-btn')
     const rightBtnEl = document.querySelector('#right-btn')
     // const highScoreEl = document.querySelector('#hi-score')
+    const restartBtn = document.querySelector('#restart-btn')
 
     /*-------------- Functions -------------*/
 
@@ -54,7 +55,7 @@ function init() {
     }
 
     function moveMonkey(direction) {
-        cells.monkeyPosition.classList.remove('monkey')
+        cells[monkeyPosition].classList.remove('monkey')
         if (direction === 'left' && monkeyPosition % gridWidth !== 0) {
             monkeyPosition--
         } else if (direction === 'right' && monkeyPosition % gridWidth !== 9) {
@@ -65,8 +66,10 @@ function init() {
 
 
     function pickItem() {
-        const types = ['banana', 'banana', 'banana', 'banana', 'golden', 'rotten', 'bomb']
-        if (lives < 3) types.push('heart')
+        const types = ['banana', 'banana', 'golden', 'rotten', 'bomb','bomb']
+        if (lives < 3) {
+            types.push('heart')}
+
         const randIndex = Math.floor(Math.random() * types.length)
         itemType = types[randIndex]
         fallingItem = Math.floor(Math.random() * gridWidth)
@@ -95,12 +98,10 @@ function init() {
                 score += 50
                 break
             case 'rotten':
-                if (score > 0) {
+                if (score > 0) 
                     score -= 10
-                }
-                if (score === 0) {
+                if (score === 0) 
                     score = 0
-                }
                 break
             case 'bomb':
                 lives--
@@ -111,16 +112,21 @@ function init() {
         }
 
         if (lives <= 0) {
-            resetGame()
+            gameOver()
         }
     }
 
     function startGame() {
         pickItem()
-        fallInterval = setInterval(dropItem, 500)
+        fallInterval = setInterval(dropItem, 400)
     }
 
     function gameOver() {
+        clearInterval(fallInterval)
+        fallingItem = null
+        itemType = null
+        render()
+        scoreElem.textContent = `Game Over - Score: ${score}`
 
     }
 
@@ -139,11 +145,13 @@ function init() {
 
     leftBtnEl.addEventListener('click', () => moveMonkey('left'))
     rightBtnEl.addEventListener('click', () => moveMonkey('right'))
+    restartBtn.addEventListener('click', resetGame)
 
     // init game
     createGrid()
     pickItem()
     render()
+    startGame()
 }
 
 

@@ -1,3 +1,6 @@
+#game-container{
+    border: 2px solid black;
+}
 body {
   font-family: Arial, sans-serif;
   text-align: center;
@@ -5,18 +8,27 @@ body {
 }
 
 h1 {
+ /* text-align: center; */
   margin-top: 20px;
 }
 
 .info {
-  font-size: 20px;
+  font-size: 14px;
   margin-bottom: 10px;
 }
 
+/* .lives{
+    text-align: right;
+}
+
+.score{
+    text-align: left;
+} */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(10, 40px);
-  grid-template-rows: repeat(10, 40px);
+  grid-template-columns: repeat(10, 45px);
+  grid-template-rows: repeat(10, 45px);
   gap: 2px;
   width: fit-content;
   margin: 20px auto;
@@ -25,48 +37,58 @@ h1 {
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   background-color: #fff;
 }
 
 .monkey {
-  background-image: url('');
+  background-image:url('https://previews.123rf.com/images/visible3dscience/visible3dscience1603/visible3dscience160314185/54062312-3d-rendered-illustration-of-monkey-cartoon-character-with-trolly.jpg');
   background-size: cover;
 }
 
 .banana {
-  background-image: url('');
+  background-image: url('https://cdn.vectorstock.com/i/1000v/74/00/banana-exotic-food-dessert-healthy-summer-vector-46237400.avif');
   background-size: cover;
 }
 
 .golden {
-  background-image: url(''); 
+  background-image: url('https://png.pngtree.com/png-vector/20240726/ourlarge/pngtree-golden-banana-isolated-on-transparent-background-png-image_13239664.png'); 
   background-size: cover;
 }
 
 .rotten {
-  background-image: url(''); 
+  background-image: url('https://cdn.vectorstock.com/i/1000x1000/85/48/banana-rotten-food-color-icon-vector-46258548.webp'); 
   background-size: cover;
 }
 
 .bomb {
-  background-image: url(''); 
+  background-image: url('https://cdn-icons-png.flaticon.com/512/4357/4357187.png'); 
   background-size: cover;
 }
 
 .heart {
-  background-image: url(''); 
+  /* background-image: url('');  */
+  content: '❤️' ;
   background-size: cover;
 }
 
-/* .controls {
-  
-} */
+
+ #left-btn{
+  background-image: url('https://cdn-icons-png.flaticon.com/512/5602/5602200.png'); 
+  background-size: cover;
+ }
+ #right-btn{
+  background-image: url('https://cdn-icons-png.flaticon.com/256/5602/5602597.png'); 
+  background-size: cover;
+ }
+
+ #restart-btn {
+    padding: 5px;
+
+ }
 
 button {
-  padding: 10px 20px;
-  font-size: 18px;
-  margin: 0 10px;
-  
+  padding: 25px; 
+  margin:  5px;
 }
