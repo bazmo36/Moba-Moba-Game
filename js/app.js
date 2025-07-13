@@ -28,7 +28,7 @@ function init() {
     /*-------------- Functions -------------*/
 
     function render() {
-        cells.forEach(cell => cell.classList.remove('monkey', 'banana', 'golden', 'rotten', 'bomb'))
+        cells.forEach(cell => cell.classList.remove('monkey', 'banana', 'golden', 'rotten', 'bomb','heart'))
         cells[monkeyPosition].classList.add('monkey')
         if (fallingItem !== null) {
             cells[fallingItem].classList.add(itemType)
@@ -47,7 +47,7 @@ function init() {
     function createGrid() {
         for (let i = 0; i < numberOfCells; i++) {
             const cell = document.createElement('div')
-            cell.textContent = i
+            // cell.textContent = i
             cell.classList.add('cell');
             gridElem.appendChild(cell);
             cells.push(cell);
@@ -118,7 +118,7 @@ function init() {
 
     function startGame() {
         pickItem()
-        fallInterval = setInterval(dropItem, 400)
+        fallInterval = setInterval(dropItem, 200)
     }
 
     function gameOver() {
@@ -146,6 +146,15 @@ function init() {
     leftBtnEl.addEventListener('click', () => moveMonkey('left'))
     rightBtnEl.addEventListener('click', () => moveMonkey('right'))
     restartBtn.addEventListener('click', resetGame)
+
+    document.addEventListener('keydown',function(event) {
+       if (event.key === 'ArrowLeft'){
+        moveMonkey('left')
+       }else if (event.key === 'ArrowRight'){
+        moveMonkey('right')
+       }
+    }
+)
 
     // init game
     createGrid()

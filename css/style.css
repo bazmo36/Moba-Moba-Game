@@ -1,94 +1,108 @@
-#game-container{
+#game-container {
     border: 2px solid black;
+    background-color: #f4de83;
 }
+
 body {
-  font-family: Arial, sans-serif;
+   
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
   text-align: center;
-  background: #f4f4f4;
+
 }
 
 h1 {
- /* text-align: center; */
-  margin-top: 20px;
+    margin-top: 30px;
+    
 }
 
 .info {
-  font-size: 14px;
-  margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
-/* .lives{
-    text-align: right;
+.lives {
+    margin-left: 60px;
 }
 
-.score{
-    text-align: left;
-} */
+.score {
+    margin-right: 60px;
+}
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(10, 45px);
-  grid-template-rows: repeat(10, 45px);
-  gap: 2px;
-  width: fit-content;
-  margin: 20px auto;
-  background-color: black;
-  border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(10, 45px);
+    gap: 2px;
+    width: fit-content;
+    margin: 20px auto;
+    /* background-color: black; */
+    background-image: url('https://media.craiyon.com/2025-04-28/EJ3WyEJnSECQw1A-IYcjrQ.webp');
+    border: 2px solid black;
 }
 
 .cell {
-  width: 45px;
-  height: 45px;
-  background-color: #fff;
+    width: 45px;
+    height: 45px;
 }
 
 .monkey {
-  background-image:url('https://previews.123rf.com/images/visible3dscience/visible3dscience1603/visible3dscience160314185/54062312-3d-rendered-illustration-of-monkey-cartoon-character-with-trolly.jpg');
-  background-size: cover;
+    background-image: url('https://previews.123rf.com/images/visible3dscience/visible3dscience1603/visible3dscience160314185/54062312-3d-rendered-illustration-of-monkey-cartoon-character-with-trolly.jpg');
+    background-size: cover;
 }
 
 .banana {
-  background-image: url('https://cdn.vectorstock.com/i/1000v/74/00/banana-exotic-food-dessert-healthy-summer-vector-46237400.avif');
-  background-size: cover;
+    background-image: url('https://png.pngtree.com/png-vector/20220826/ourmid/pngtree-pixel-art-banana-icon-design-vector-png-image_6122196.png');
+    background-size: cover;
 }
 
 .golden {
-  background-image: url('https://png.pngtree.com/png-vector/20240726/ourlarge/pngtree-golden-banana-isolated-on-transparent-background-png-image_13239664.png'); 
-  background-size: cover;
+    background-image: url('https://png.pngtree.com/png-vector/20240726/ourlarge/pngtree-golden-banana-isolated-on-transparent-background-png-image_13239664.png');
+    background-size: cover;
 }
 
 .rotten {
-  background-image: url('https://cdn.vectorstock.com/i/1000x1000/85/48/banana-rotten-food-color-icon-vector-46258548.webp'); 
-  background-size: cover;
+    background-image: url('..assets\old-rotten-banana.png');
+    background-size: cover;
 }
 
 .bomb {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/4357/4357187.png'); 
-  background-size: cover;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/4357/4357187.png');
+    background-size: cover;
 }
 
 .heart {
-  /* background-image: url('');  */
-  content: '❤️' ;
-  background-size: cover;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png');
+    background-size: cover;
 }
 
 
- #left-btn{
-  background-image: url('https://cdn-icons-png.flaticon.com/512/5602/5602200.png'); 
-  background-size: cover;
- }
- #right-btn{
-  background-image: url('https://cdn-icons-png.flaticon.com/256/5602/5602597.png'); 
-  background-size: cover;
- }
+#left-btn {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/5602/5602200.png');
+    background-size: cover;
+}
 
- #restart-btn {
-    padding: 5px;
+#right-btn {
+    background-image: url('https://cdn-icons-png.flaticon.com/256/5602/5602597.png');
+    background-size: cover;
+}
 
- }
+#restart-btn {
+    padding: 7px;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 12px;
+    border: 2px solid black;
+    background-color: rgb(252, 172, 205);
+    
+
+
+}
 
 button {
-  padding: 25px; 
-  margin:  5px;
+    padding: 25px;
+    margin: 5px;
+    margin-bottom: 30px;
 }
