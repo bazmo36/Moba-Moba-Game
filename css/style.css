@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+.info {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 40px);
+  grid-template-rows: repeat(10, 40px);
+  gap: 2px;
+  width: fit-content;
+  margin: 20px auto;
+  background-color: black;
+  border: 2px solid black;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+}
+
+.monkey {
+  background-image: url('');
+  background-size: cover;
+}
+
+.banana {
+  background-image: url('');
+  background-size: cover;
+}
+
+.golden {
+  background-image: url(''); 
+  background-size: cover;
+}
+
+.rotten {
+  background-image: url(''); 
+  background-size: cover;
+}
+
+.bomb {
+  background-image: url(''); 
+  background-size: cover;
+}
+
+.heart {
+  background-image: url(''); 
+  background-size: cover;
+}
+
+/* .controls {
+  
+} */
+
+button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 0 10px;
+  
+}
