@@ -74,7 +74,7 @@ h1 {
 }
 
 .bomb {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/4357/4357187.png');
+    background-image: url('../assets/bomb-edited.png');
     background-size: cover;
 }
 
