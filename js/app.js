@@ -28,7 +28,7 @@ function init() {
     /*-------------- Functions -------------*/
 
     function render() {
-        cells.forEach(cell => cell.classList.remove('monkey', 'banana', 'golden', 'rotten', 'bomb','heart'))
+        cells.forEach(cell => cell.classList.remove('monkey', 'banana', 'gold', 'rotten', 'bomb', 'heart'))
         cells[monkeyPosition].classList.add('monkey')
         if (fallingItem !== null) {
             cells[fallingItem].classList.add(itemType)
@@ -66,9 +66,10 @@ function init() {
 
 
     function pickItem() {
-        const types = ['banana', 'banana', 'golden', 'rotten', 'bomb','bomb']
+        const types = ['banana', 'banana', 'gold', 'rotten', 'bomb', 'bomb']
         if (lives < 3) {
-            types.push('heart')}
+            types.push('heart')
+        }
 
         const randIndex = Math.floor(Math.random() * types.length)
         itemType = types[randIndex]
@@ -94,13 +95,13 @@ function init() {
             case 'banana':
                 score += 5
                 break
-            case 'golden':
+            case 'gold':
                 score += 50
                 break
             case 'rotten':
-                if (score > 0) 
+                if (score > 0)
                     score -= 10
-                if (score === 0) 
+                if (score <= 0)
                     score = 0
                 break
             case 'bomb':
@@ -126,42 +127,50 @@ function init() {
         fallingItem = null
         itemType = null
         render()
-        scoreElem.textContent = `Game Over - Score: ${score}`
+        scoreElem.textContent = `Game Over - Score: ${score}` }
 
-    }
+        // const gameOverScreen = document.getElementById('game-over');
+        // if (gameOverScreen) {
+        //     gameOverScreen.style.display = 'flex';
+        // }
+    
 
+        function resetGame() {
+            clearInterval(fallInterval)
+            monkeyPosition = 95
+            score = 0
+            lives = 3
+            fallingItem = null
+            pickItem()
+            startGame()
 
-    function resetGame() {
-        clearInterval(fallInterval)
-        monkeyPosition = 95
-        score = 0
-        lives = 3
-        fallingItem = null
+            // const gameOverScreen = document.getElementById('game-over');
+            // if (gameOverScreen) {
+            //     gameOverScreen.style.display = 'none';
+            // }
+        }
+
+        /*----------- Event Listeners ----------*/
+
+        leftBtnEl.addEventListener('click', () => moveMonkey('left'))
+        rightBtnEl.addEventListener('click', () => moveMonkey('right'))
+        restartBtn.addEventListener('click', resetGame)
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'ArrowLeft') {
+                moveMonkey('left')
+            } else if (event.key === 'ArrowRight') {
+                moveMonkey('right')
+            }
+        }
+        )
+
+        // init game
+        createGrid()
         pickItem()
+        render()
         startGame()
     }
 
-    /*----------- Event Listeners ----------*/
 
-    leftBtnEl.addEventListener('click', () => moveMonkey('left'))
-    rightBtnEl.addEventListener('click', () => moveMonkey('right'))
-    restartBtn.addEventListener('click', resetGame)
-
-    document.addEventListener('keydown',function(event) {
-       if (event.key === 'ArrowLeft'){
-        moveMonkey('left')
-       }else if (event.key === 'ArrowRight'){
-        moveMonkey('right')
-       }
-    }
-)
-
-    // init game
-    createGrid()
-    pickItem()
-    render()
-    startGame()
-}
-
-
-document.addEventListener('DOMContentLoaded', init)
+    document.addEventListener('DOMContentLoaded', init)
