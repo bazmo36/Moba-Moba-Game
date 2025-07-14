@@ -63,7 +63,7 @@ h1 {
 }
 
 .gold {
-    background-image: url('https://static.vecteezy.com/system/resources/previews/019/527/049/non_2x/an-8-bit-retro-styled-pixel-art-illustration-of-gold-free-png.png');
+    background-image: url('../assets/gold-edited.png');
     background-size: cover;
 }
 
@@ -81,6 +81,7 @@ h1 {
 .heart {
     background-image: url('https://toppng.com/uploads/thumbnail/minecraft-heart-png-8-bits-heart-115628574854lkqwg133a.png');
     background-size: cover;
+    width: 50px;
 }
 
 
