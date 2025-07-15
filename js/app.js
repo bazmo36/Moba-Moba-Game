@@ -34,6 +34,13 @@ function init() {
     const playAgainBtn = document.querySelector('#play-again')
 
     const restartBtn = document.querySelector('#restart-btn')
+    const bananaSound = document.querySelector ('#banana-sound')
+    const rottenSound = document.querySelector ('#rotten-sond')
+    const goldSound = document.querySelector ('#gold-sound')
+    const stepSound = document.querySelector ('#step-sound')
+    const heartSound = document.querySelector ('#heart-sound')
+    const bombSound = document.querySelector ('#bomb-sound')
+    const gameOverSound = document.querySelector ('#game-over-sound')
 
     /*-------------- Functions -------------*/
 
@@ -103,21 +110,26 @@ function init() {
         switch (type) {
             case 'banana':
                 score += 5
+                bananaSound.play()
                 break
             case 'gold':
                 score += 50
+                goldSound.play()
                 break
             case 'rotten':
                 if (score > 0)
                     score -= 10
                 if (score <= 0)
                     score = 0
+                rottenSound.play()
                 break
             case 'bomb':
                 lives--
+                bombSound.play()
                 break
             case 'heart':
                 if (lives < 3) lives++
+                heartSound.play()
                 break
         }
 
@@ -143,6 +155,7 @@ function init() {
         fallingItem = null
         itemType = null
         render()
+        gameOverSound.play()
         updateBestScore()
 
         finalScoreEl.textContent = score
