@@ -13,7 +13,7 @@ function init() {
 
     /*---------- Variables (state) ---------*/
     let score = 0
-    let bestscore = 0
+    let bestScore = Number(localStorage.getItem('bestScore'))||0
     let monkeyPosition = 95
     let lives = 3
     let itemType = null
@@ -126,6 +126,13 @@ function init() {
         }
     }
 
+    function updateBestScore(){
+        if (score>bestScore){
+            bestScore = score
+            localStorage.setItem('bestScore',bestScore)
+        }
+    }
+
     function startGame() {
         pickItem()
         fallInterval = setInterval(dropItem, 200)
@@ -136,10 +143,10 @@ function init() {
         fallingItem = null
         itemType = null
         render()
-        // updateBestScore()
+        updateBestScore()
 
         finalScoreEl.textContent = score
-        bestScoreEl.textContent = bestscore
+        bestScoreEl.textContent = bestScore
         gameOverScreen.classList.remove('hidden')
         // gameOverScreen.style.display('flex')
     }
