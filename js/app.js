@@ -1,3 +1,9 @@
+// add sound effect & music
+// add a high score tracker
+//add difficulty fo example increaseing the speed when the score increases
+// add pause
+// improving game over by add score ,high score, play again button
+
 function init() {
 
     /*-------------- Constants -------------*/
@@ -7,7 +13,7 @@ function init() {
 
     /*---------- Variables (state) ---------*/
     let score = 0
-    // let highscore = 0
+    let bestscore = 0
     let monkeyPosition = 95
     let lives = 3
     let itemType = null
@@ -22,7 +28,11 @@ function init() {
     const livesElem = document.querySelector('#lives')
     const leftBtnEl = document.querySelector('#left-btn')
     const rightBtnEl = document.querySelector('#right-btn')
-    // const highScoreEl = document.querySelector('#hi-score')
+    const gameOverScreen = document.querySelector('#game-over')
+    const finalScoreEl = document.querySelector('#final-score')
+    const bestScoreEl = document.querySelector('#best-score')
+    const playAgainBtn = document.querySelector('#play-again')
+
     const restartBtn = document.querySelector('#restart-btn')
 
     /*-------------- Functions -------------*/
@@ -47,7 +57,6 @@ function init() {
     function createGrid() {
         for (let i = 0; i < numberOfCells; i++) {
             const cell = document.createElement('div')
-            // cell.textContent = i
             cell.classList.add('cell');
             gridElem.appendChild(cell);
             cells.push(cell);
@@ -127,50 +136,52 @@ function init() {
         fallingItem = null
         itemType = null
         render()
-        scoreElem.textContent = `Game Over - Score: ${score}` }
+        // updateBestScore()
 
-        // const gameOverScreen = document.getElementById('game-over');
-        // if (gameOverScreen) {
-        //     gameOverScreen.style.display = 'flex';
-        // }
-    
-
-        function resetGame() {
-            clearInterval(fallInterval)
-            monkeyPosition = 95
-            score = 0
-            lives = 3
-            fallingItem = null
-            pickItem()
-            startGame()
-
-            // const gameOverScreen = document.getElementById('game-over');
-            // if (gameOverScreen) {
-            //     gameOverScreen.style.display = 'none';
-            // }
-        }
-
-        /*----------- Event Listeners ----------*/
-
-        leftBtnEl.addEventListener('click', () => moveMonkey('left'))
-        rightBtnEl.addEventListener('click', () => moveMonkey('right'))
-        restartBtn.addEventListener('click', resetGame)
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'ArrowLeft') {
-                moveMonkey('left')
-            } else if (event.key === 'ArrowRight') {
-                moveMonkey('right')
-            }
-        }
-        )
-
-        // init game
-        createGrid()
-        pickItem()
-        render()
-        startGame()
+        finalScoreEl.textContent = score
+        bestScoreEl.textContent = bestscore
+        gameOverScreen.classList.remove('hidden')
+        // gameOverScreen.style.display('flex')
     }
 
 
-    document.addEventListener('DOMContentLoaded', init)
+    function resetGame() {
+        clearInterval(fallInterval)
+        monkeyPosition = 95
+        score = 0
+        lives = 3
+        fallingItem = null
+        pickItem()
+        startGame()
+        // gameOverScreen.style.display('none')
+        gameOverScreen.classList.add('hidden')
+
+    }
+    // gameOverScreen.classList.add('hidden')
+    console.log(gameOverScreen)
+
+    /*----------- Event Listeners ----------*/
+
+    leftBtnEl.addEventListener('click', () => moveMonkey('left'))
+    rightBtnEl.addEventListener('click', () => moveMonkey('right'))
+    restartBtn.addEventListener('click', resetGame)
+    playAgainBtn.addEventListener('click', resetGame)
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+            moveMonkey('left')
+        } else if (event.key === 'ArrowRight') {
+            moveMonkey('right')
+        }
+    }
+    )
+
+    // init game
+    gameOverScreen.classList.add('hidden')
+    createGrid()
+    pickItem()
+    render()
+    startGame()
+}
+
+
+document.addEventListener('DOMContentLoaded', init)
