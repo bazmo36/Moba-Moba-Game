@@ -19,6 +19,8 @@ function init() {
     let itemType = null
     let fallingItem = null
     let fallInterval
+    let speed = 200
+    let isPaused = false
 
 
 
@@ -26,13 +28,18 @@ function init() {
     const gridElem = document.querySelector('.grid')
     const scoreElem = document.querySelector('#score')
     const livesElem = document.querySelector('#lives')
-    const leftBtnEl = document.querySelector('#left-btn')
-    const rightBtnEl = document.querySelector('#right-btn')
     const gameOverScreen = document.querySelector('#game-over')
     const finalScoreEl = document.querySelector('#final-score')
     const bestScoreEl = document.querySelector('#best-score')
-    const playAgainBtn = document.querySelector('#play-again')
 
+    //buttons
+    const leftBtnEl = document.querySelector('#left-btn')
+    const rightBtnEl = document.querySelector('#right-btn')
+    const playAgainBtn = document.querySelector('#play-again')
+    const pauseBtn = document.querySelector('#pause-btn')
+
+
+    // sounds
     const restartBtn = document.querySelector('#restart-btn')
     const bananaSound = document.querySelector ('#banana-sound')
     const rottenSound = document.querySelector ('#rotten-sond')
@@ -194,6 +201,18 @@ function init() {
         }
     }
     )
+
+    pauseBtn.addEventListener('click', () => {
+    if (!isPaused) {
+        clearInterval(fallInterval)
+        pauseBtn.textContent = 'Resume'
+        isPaused = true
+    } else {
+        startGame()
+        pauseBtn.textContent = 'Pause'
+        isPaused = false
+    }
+})
 
     // init game
     gameOverScreen.classList.add('hidden')

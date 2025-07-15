@@ -100,13 +100,19 @@ h1 {
     font-size: 12px;
     border: 2px solid black;
     background-color: rgb(224, 90, 67);
-    
-
 
 }
 
 #play-again{
  padding: 7px;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 12px;
+    border: 2px solid black;
+    background-color: rgb(224, 90, 67);
+}
+
+#pause-btn{
+    padding: 7px;
     font-family: "Press Start 2P", system-ui;
     font-size: 12px;
     border: 2px solid black;
