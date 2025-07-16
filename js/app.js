@@ -248,6 +248,8 @@ function init() {
         fallingItems = []
         pickItem()
         startGame()
+        pauseBtn.textContent = '⏸️'
+        isPaused = false
         // gameOverScreen.style.display('none')
         gameOverScreen.classList.add('hidden')
 
@@ -273,11 +275,11 @@ function init() {
     pauseBtn.addEventListener('click', () => {
         if (!isPaused) {
             clearInterval(fallInterval)
-            pauseBtn.textContent = 'Resume'
+            pauseBtn.textContent = '▶️'
             isPaused = true
         } else {
             startGame()
-            pauseBtn.textContent = 'Pause'
+            pauseBtn.textContent = '⏸️'
             isPaused = false
         }
     })

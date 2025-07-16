@@ -4,21 +4,25 @@
     left:0;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/start-background.jpeg");
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    background-image: url("https://media.craiyon.com/2025-04-24/7Ytq8Bw5TEeUm1N2JPMtRQ.webp") ;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
+    
 }
 
+
+
 #start-btn {
-    padding: 7px;
-    font-family: "Press Start 2P", system-ui;
-    font-size: 12px;
-    border: 2px solid black;
-    background-color: rgb(224, 90, 67);
+    padding: 30px 90px;
+    border-radius: 15px;
+    background-image: url('https://cdn.pixabay.com/photo/2024/07/03/18/57/start-8870688_1280.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     
 }
 
@@ -46,18 +50,14 @@ h1 {
     display: flex;
     justify-content: space-between;
     font-size: 15px;
-    margin-bottom: 10px;
+    margin: 0 auto;
+    max-width: 70%;
+    text-align: center;
 }
 
-.lives {
-    margin-left: 60px;
-}
-
-.score {
-    margin-right: 60px;
-}
 
 .grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(10,45px);
     grid-template-rows: repeat(10, 45px);
@@ -119,13 +119,29 @@ h1 {
     background-size: cover;
 }
 
-#restart-btn {
-    padding: 7px;
-    font-family: "Press Start 2P", system-ui;
-    font-size: 12px;
-    border: 2px solid black;
-    background-color: rgb(224, 90, 67);
+.control-btn{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: flex;
+  gap: 5px;
+  z-index: 10;
+}
 
+#restart-btn {
+    padding: 0px;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 24px;
+    border: 2px solid black;
+}
+
+
+#pause-btn{
+    padding: 0px ;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 24px;
+
+    border: 2px solid black;
 }
 
 #play-again{
@@ -136,12 +152,12 @@ h1 {
     background-color: rgb(224, 90, 67);
 }
 
-#pause-btn{
-    padding: 7px;
-    font-family: "Press Start 2P", system-ui;
-    font-size: 12px;
-    border: 2px solid black;
-    background-color: rgb(224, 90, 67);
+.control-monkey-btn{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 40%;
+   
 }
 
 button {
