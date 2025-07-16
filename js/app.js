@@ -13,13 +13,14 @@ function init() {
 
     /*---------- Variables (state) ---------*/
     let score = 0
-    let bestScore = Number(localStorage.getItem('bestScore'))||0
+    let bestScore = Number(localStorage.getItem('bestScore')) || 0
     let monkeyPosition = 95
     let lives = 3
-    let itemType = null
-    let fallingItem = null
+    let fallingItems
+    // let itemType = null
+    // let fallingItem = null
     let fallInterval
-    let speed = 200
+    let dropSpeed = 200
     let isPaused = false
 
 
@@ -41,22 +42,31 @@ function init() {
 
     // sounds
     const restartBtn = document.querySelector('#restart-btn')
-    const bananaSound = document.querySelector ('#banana-sound')
-    const rottenSound = document.querySelector ('#rotten-sond')
-    const goldSound = document.querySelector ('#gold-sound')
-    const stepSound = document.querySelector ('#step-sound')
-    const heartSound = document.querySelector ('#heart-sound')
-    const bombSound = document.querySelector ('#bomb-sound')
-    const gameOverSound = document.querySelector ('#game-over-sound')
+    const bananaSound = document.querySelector('#banana-sound')
+    const rottenSound = document.querySelector('#rotten-sound')
+    const goldSound = document.querySelector('#gold-sound')
+    const stepSound = document.querySelector('#step-sound')
+    const heartSound = document.querySelector('#heart-sound')
+    const bombSound = document.querySelector('#bomb-sound')
+    const gameOverSound = document.querySelector('#game-over-sound')
 
     /*-------------- Functions -------------*/
 
     function render() {
         cells.forEach(cell => cell.classList.remove('monkey', 'banana', 'gold', 'rotten', 'bomb', 'heart'))
         cells[monkeyPosition].classList.add('monkey')
-        if (fallingItem !== null) {
-            cells[fallingItem].classList.add(itemType)
+
+        if (fallingItems) {
+            fallingItems.forEach(item => {
+                cells[item.position].classList.add(item.type)
+
+            })
+
         }
+
+        // if (fallingItem !== null) {
+        //     cells[fallingItem].classList.add(itemType)
+        // }
 
         let hearts = '';
         for (let i = 0; i < lives; i++) {
@@ -94,24 +104,50 @@ function init() {
             types.push('heart')
         }
 
-        const randIndex = Math.floor(Math.random() * types.length)
-        itemType = types[randIndex]
-        fallingItem = Math.floor(Math.random() * gridWidth)
+         const type = types[Math.floor(Math.random() * types.length)];
+         const position = Math.floor(Math.random() * gridWidth)
 
+        // const randIndex = Math.floor(Math.random() * types.length)
+        // itemType = types[randIndex]
+        // fallingItems = Math.floor(Math.random() * gridWidth)
 
+        return { position, type }
     }
 
-    function dropItem() {
-        if (fallingItem !== null && fallingItem < numberOfCells - gridWidth) {
-            fallingItem += gridWidth
-        } else {
-            if (fallingItem === monkeyPosition) {
-                handleCatch(itemType)
+    // function dropItem() {
+    // if (fallingItem !== null && fallingItem < numberOfCells - gridWidth) {
+    //     fallingItem += gridWidth
+    // } else {
+    //     if (fallingItem === monkeyPosition) {
+    //         handleCatch(itemType)
+    //     }
+    //         pickItem()
+    //     }
+    //     render()
+    // }
+
+
+    function dropItems() {
+        for (let i = fallingItems.length - 1; i >= 0; i--) {
+            let item = fallingItems[i];
+
+            if (item.position < numberOfCells - gridWidth) {
+                item.position += gridWidth
+            } else {
+                if (item.position === monkeyPosition) {
+                    handleCatch(item.type);
+                }
+
+                fallingItems.splice( i, 1 )
+                fallingItems.push(pickItem())
+
             }
-            pickItem()
+
         }
         render()
     }
+
+
 
     function handleCatch(type) {
         switch (type) {
@@ -143,23 +179,56 @@ function init() {
         if (lives <= 0) {
             gameOver()
         }
+
+        // item speed
+        if (score >=1200){
+            updateSpeed(60)
+        }
+        else if (score >=1000){
+            updateSpeed(70)
+        }
+        else if (score >=800){
+            updateSpeed(80)
+        }
+        else if (score >= 600) {
+            updateSpeed(90);
+        } else if (score >= 500) {
+            updateSpeed(110);
+        } else if (score >= 300) {
+            updateSpeed(150);
+        } else if (score >= 200) {
+            updateSpeed(170);
+        } else {
+            updateSpeed(200);
+        }
+
     }
 
-    function updateBestScore(){
-        if (score>bestScore){
+    console.log(dropSpeed)
+
+    function updateSpeed(newSpeed) {
+        if (newSpeed !== dropSpeed) {
+            dropSpeed = newSpeed
+            clearInterval(fallInterval);
+            fallInterval = setInterval(dropItems, dropSpeed);
+        }
+    }
+
+    function updateBestScore() {
+        if (score > bestScore) {
             bestScore = score
-            localStorage.setItem('bestScore',bestScore)
+            localStorage.setItem('bestScore', bestScore)
         }
     }
 
     function startGame() {
-        pickItem()
-        fallInterval = setInterval(dropItem, 200)
+        fallingItems = [pickItem(), pickItem(), pickItem()]
+        fallInterval = setInterval(dropItems, dropSpeed)
     }
 
     function gameOver() {
         clearInterval(fallInterval)
-        fallingItem = null
+        fallingItems = null
         itemType = null
         render()
         gameOverSound.play()
@@ -177,7 +246,7 @@ function init() {
         monkeyPosition = 95
         score = 0
         lives = 3
-        fallingItem = null
+        fallingItems = []
         pickItem()
         startGame()
         // gameOverScreen.style.display('none')
@@ -203,16 +272,16 @@ function init() {
     )
 
     pauseBtn.addEventListener('click', () => {
-    if (!isPaused) {
-        clearInterval(fallInterval)
-        pauseBtn.textContent = 'Resume'
-        isPaused = true
-    } else {
-        startGame()
-        pauseBtn.textContent = 'Pause'
-        isPaused = false
-    }
-})
+        if (!isPaused) {
+            clearInterval(fallInterval)
+            pauseBtn.textContent = 'Resume'
+            isPaused = true
+        } else {
+            startGame()
+            pauseBtn.textContent = 'Pause'
+            isPaused = false
+        }
+    })
 
     // init game
     gameOverScreen.classList.add('hidden')
