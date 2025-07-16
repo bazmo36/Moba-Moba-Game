@@ -1,9 +1,3 @@
-// add sound effect & music
-// add a high score tracker
-//add difficulty fo example increaseing the speed when the score increases
-// add pause
-// improving game over by add score ,high score, play again button
-
 function init() {
 
     /*-------------- Constants -------------*/
@@ -20,12 +14,13 @@ function init() {
     // let itemType = null
     // let fallingItem = null
     let fallInterval
-    let dropSpeed = 200
+    let dropSpeed = 250
     let isPaused = false
 
 
 
     /*----- Cached Element References  -----*/
+    const startScreen = document.querySelector('#start-screen')
     const gridElem = document.querySelector('.grid')
     const scoreElem = document.querySelector('#score')
     const livesElem = document.querySelector('#lives')
@@ -34,6 +29,7 @@ function init() {
     const bestScoreEl = document.querySelector('#best-score')
 
     //buttons
+    const startBtn = document.querySelector('#start-btn')
     const leftBtnEl = document.querySelector('#left-btn')
     const rightBtnEl = document.querySelector('#right-btn')
     const playAgainBtn = document.querySelector('#play-again')
@@ -49,6 +45,7 @@ function init() {
     const heartSound = document.querySelector('#heart-sound')
     const bombSound = document.querySelector('#bomb-sound')
     const gameOverSound = document.querySelector('#game-over-sound')
+    const backgroundSound = document.querySelector('#background-sound')
 
     /*-------------- Functions -------------*/
 
@@ -68,11 +65,11 @@ function init() {
         //     cells[fallingItem].classList.add(itemType)
         // }
 
-        let hearts = '';
+        let hearts = ''
         for (let i = 0; i < lives; i++) {
-            hearts += '❤️';
+            hearts += '❤️'
         }
-        livesElem.textContent = hearts;
+        livesElem.textContent = hearts
 
         scoreElem.textContent = score
 
@@ -81,9 +78,9 @@ function init() {
     function createGrid() {
         for (let i = 0; i < numberOfCells; i++) {
             const cell = document.createElement('div')
-            cell.classList.add('cell');
-            gridElem.appendChild(cell);
-            cells.push(cell);
+            cell.classList.add('cell')
+            gridElem.appendChild(cell)
+            cells.push(cell)
         }
     }
 
@@ -91,8 +88,10 @@ function init() {
         cells[monkeyPosition].classList.remove('monkey')
         if (direction === 'left' && monkeyPosition % gridWidth !== 0) {
             monkeyPosition--
+             stepSound.play()
         } else if (direction === 'right' && monkeyPosition % gridWidth !== 9) {
             monkeyPosition++
+             stepSound.play()
         }
         render()
     }
@@ -182,24 +181,24 @@ function init() {
 
         // item speed
         if (score >=1200){
-            updateSpeed(60)
+            updateSpeed(55)
         }
         else if (score >=1000){
             updateSpeed(70)
         }
         else if (score >=800){
-            updateSpeed(80)
+            updateSpeed(90)
         }
         else if (score >= 600) {
-            updateSpeed(90);
+            updateSpeed(110)
         } else if (score >= 500) {
-            updateSpeed(110);
+            updateSpeed(150)
         } else if (score >= 300) {
-            updateSpeed(150);
+            updateSpeed(190)
         } else if (score >= 200) {
-            updateSpeed(170);
+            updateSpeed(220)
         } else {
-            updateSpeed(200);
+            updateSpeed(250)
         }
 
     }
@@ -283,12 +282,17 @@ function init() {
         }
     })
 
+    startBtn.addEventListener('click', () => {
+    startScreen.style.display = 'none'
+    startGame();
+})
+
     // init game
     gameOverScreen.classList.add('hidden')
     createGrid()
     pickItem()
     render()
-    startGame()
+    // startGame()
 }
 
 
