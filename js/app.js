@@ -203,7 +203,7 @@ function init() {
 
     }
 
-    console.log(dropSpeed)
+    // console.log(dropSpeed)
 
     function updateSpeed(newSpeed) {
         if (newSpeed !== dropSpeed) {
@@ -278,7 +278,8 @@ function init() {
             pauseBtn.textContent = '▶️'
             isPaused = true
         } else {
-            startGame()
+            fallInterval = setInterval(dropItems, dropSpeed)
+            // startGame()
             pauseBtn.textContent = '⏸️'
             isPaused = false
         }

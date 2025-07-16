@@ -11,8 +11,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    flex-direction: column;
+    color: white;
     z-index: 999;
-    
+    text-shadow:
+      -1px -1px 0 black,
+      1px -1px 0 black,
+      -1px 1px 0 black,
+      1px 1px 0 black;
+      
 }
 
 
