@@ -22,7 +22,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 40%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -30,16 +30,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* align-content: center; */
-    /* flex-direction: column; */
-    /* color: white;
-    text-shadow:
-      -1px -1px 0 black,
-      1px -1px 0 black,
-      -1px 1px 0 black,
-      1px 1px 0 black; */
     color: #FFEB3B;
-    font-size: 18px;
+    font-size: 40px;
     text-shadow:
         -2px -2px 0 #000,
         2px -2px 0 #000,
@@ -65,24 +57,31 @@
     font-size: 15px;
 }
 
+.title {
+    text-shadow:
+        -1px -1px 0 #FFF,
+        1px -1px 0 #FFF,
+        -1px 1px 0 #FFF,
+        2px 2px 0 #FFF;
+}
+
 body {
 
     font-family: "Press Start 2P", system-ui;
     font-weight: 400;
     font-style: normal;
     text-align: center;
-    
+
 
 }
 
-h1 {
+.start-container h1 {
     margin-top: 30px;
-    color: #000;
     text-shadow:
-    -1px -1px 0 #FFF,
-     2px -2px 0 #FFF,
-    -2px  2px 0 #FFF,
-     2px  2px 0 #FFF;
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        3px 3px 0 #FFF;
 
 }
 
@@ -93,11 +92,11 @@ h1 {
     margin: 0 auto;
     max-width: 70%;
     text-align: center;
-     text-shadow:
-    -1px -1px 0 #FFF,
-     1px -1px 0 #FFF,
-    -1px  1px 0 #FFF,
-     2px  2px 0 #FFF;
+    text-shadow:
+        -1px -1px 0 #FFF,
+        1px -1px 0 #FFF,
+        -1px 1px 0 #FFF,
+        2px 2px 0 #FFF;
 }
 
 
@@ -175,7 +174,6 @@ h1 {
 
 #restart-btn {
     padding: 0px;
-    font-family: "Press Start 2P", system-ui;
     font-size: 24px;
     border: 2px solid black;
 }
@@ -183,7 +181,12 @@ h1 {
 
 #pause-btn {
     padding: 0px;
-    font-family: "Press Start 2P", system-ui;
+    font-size: 24px;
+    border: 2px solid black;
+}
+
+#mute-btn {
+    padding: 0px;
     font-size: 24px;
     border: 2px solid black;
 }
@@ -194,7 +197,7 @@ h1 {
     font-family: "Press Start 2P", system-ui;
     font-size: 14px;
     border: 2px solid black;
-    background-color: rgb(59, 203, 102);
+    background-color: rgb(59, 177, 203);
 }
 
 .control-monkey-btn {
@@ -232,12 +235,12 @@ button {
 h2 {
     color: #fecd2b;
     font-size: 35px;
-     text-shadow:
-     1px 1px 0 #222,
+    text-shadow:
+        1px 1px 0 #222,
         2px 2px 0 #000000,
         3px 3px 0 #0015fa,
         4px 6px 0 #fe0000;
-    
+
 }
 
 .hidden {

@@ -34,6 +34,8 @@ function init() {
     const rightBtnEl = document.querySelector('#right-btn')
     const playAgainBtn = document.querySelector('#play-again')
     const pauseBtn = document.querySelector('#pause-btn')
+    const bgMusic = document.querySelector('#background-music');
+    const muteBtn = document.querySelector('#mute-btn');
 
 
     // sounds
@@ -88,10 +90,10 @@ function init() {
         cells[monkeyPosition].classList.remove('monkey')
         if (direction === 'left' && monkeyPosition % gridWidth !== 0) {
             monkeyPosition--
-             stepSound.play()
+            stepSound.play()
         } else if (direction === 'right' && monkeyPosition % gridWidth !== 9) {
             monkeyPosition++
-             stepSound.play()
+            stepSound.play()
         }
         render()
     }
@@ -103,8 +105,8 @@ function init() {
             types.push('heart')
         }
 
-         const type = types[Math.floor(Math.random() * types.length)];
-         const position = Math.floor(Math.random() * gridWidth)
+        const type = types[Math.floor(Math.random() * types.length)];
+        const position = Math.floor(Math.random() * gridWidth)
 
         // const randIndex = Math.floor(Math.random() * types.length)
         // itemType = types[randIndex]
@@ -137,7 +139,7 @@ function init() {
                     handleCatch(item.type);
                 }
 
-                fallingItems.splice( i, 1 )
+                fallingItems.splice(i, 1)
                 fallingItems.push(pickItem())
 
             }
@@ -180,13 +182,13 @@ function init() {
         }
 
         // item speed
-        if (score >=1200){
+        if (score >= 1200) {
             updateSpeed(55)
         }
-        else if (score >=1000){
+        else if (score >= 1000) {
             updateSpeed(70)
         }
-        else if (score >=800){
+        else if (score >= 800) {
             updateSpeed(90)
         }
         else if (score >= 600) {
@@ -228,7 +230,6 @@ function init() {
     function gameOver() {
         clearInterval(fallInterval)
         fallingItems = null
-        itemType = null
         render()
         gameOverSound.play()
         updateBestScore()
@@ -253,6 +254,10 @@ function init() {
         // gameOverScreen.style.display('none')
         gameOverScreen.classList.add('hidden')
 
+        bgMusic.muted = false
+        bgMusic.currentTime = 0
+        bgMusic.play()
+        muteBtn.textContent = '🔊'
     }
     // gameOverScreen.classList.add('hidden')
     console.log(gameOverScreen)
@@ -262,7 +267,11 @@ function init() {
     leftBtnEl.addEventListener('click', () => moveMonkey('left'))
     rightBtnEl.addEventListener('click', () => moveMonkey('right'))
     restartBtn.addEventListener('click', resetGame)
-    playAgainBtn.addEventListener('click', resetGame)
+    // playAgainBtn.addEventListener('click', resetGame)
+    playAgainBtn.addEventListener('click', () => {
+        resetGame()
+        bgMusic.play()
+    })
     document.addEventListener('keydown', function (event) {
         if (event.key === 'ArrowLeft') {
             moveMonkey('left')
@@ -285,10 +294,21 @@ function init() {
         }
     })
 
+    muteBtn.addEventListener('click', () => {
+       bgMusic.muted =!bgMusic.muted
+       const isMuted = bgMusic.muted;
+       if (isMuted) {
+    muteBtn.textContent = '🔇';  
+} else {
+    muteBtn.textContent = '🔊';  
+}
+    })
+
     startBtn.addEventListener('click', () => {
-    startScreen.style.display = 'none'
-    startGame();
-})
+        startScreen.style.display = 'none'
+        bgMusic.play()
+        startGame();
+    })
 
     // init game
     gameOverScreen.classList.add('hidden')
