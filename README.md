@@ -12,7 +12,7 @@ This project was chosen for its fun and engaging gameplay mechanics, combined wi
 
 ## 🎮 Getting Started
 
-- **Play the game live**: [Moba Moba on GitHub Pages](https://your-deployed-link-here.com)
+- **Play the game live**: [Moba Moba on GitHub Pages](https://bazmo36.github.io/Moba-Moba-Game/)
 
 - 📌 **Planning board**: [Trello Project Board](https://trello.com/b/Odq8mpeG/project-1-seb-unit-1)
 
